@@ -1,0 +1,13 @@
+streamlit
+pandas
+numpy
+scikit-learn
+joblib
+requests
+python-dotenv
+openrouteservice
+plotly
+gtts
+groq
+folium
+streamlit-folium
