@@ -13,7 +13,7 @@ import uuid
 from dotenv import load_dotenv
 from streamlit_folium import st_folium
 from gtts import gTTS
-from playsound import playsound
+
 
 # Import heatmap function
 from visualization.heatmap import generate_heatmap
@@ -316,7 +316,7 @@ def speak_alert(message):
 
     try:
 
-        filename = f"alert_{uuid.uuid4()}.mp3"
+        filename = "alert.mp3"
 
         tts = gTTS(
             text=message,
@@ -325,18 +325,14 @@ def speak_alert(message):
 
         tts.save(filename)
 
-        playsound(filename)
+        audio_file = open(filename, "rb")
+        audio_bytes = audio_file.read()
 
-        time.sleep(1)
-
-        os.remove(filename)
+        st.audio(audio_bytes, format="audio/mp3")
 
     except Exception as e:
 
-        st.warning(
-            f"Voice alert error: {e}"
-        )
-
+        st.warning(f"Voice alert error: {e}")
 # ----------------------------------
 # WEATHER FUNCTION
 # ----------------------------------
